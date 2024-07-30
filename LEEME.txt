@@ -1,0 +1,16 @@
+# Instrucciones para instalar el Proyecto de Votación
+
+## Requisitos
+- Servidor Web (Apache recomendado)
+- PHP 7.4 o superior
+- MySQL 5.7 o superior
+
+## Pasos para la Instalación
+1. Clonar el repositorio en el directorio del servidor web.
+2. Importar el archivo `sql/base_de_datos.sql` en MySQL.
+3. Configurar las credenciales de la base de datos en los archivos PHP según sea necesario.
+4. Abrir el navegador y acceder a `http://localhost/votacion/index.php`.
+
+## Versión
+- PHP: 7.4 (Compatible desde PHP 5.6 en adelante)
+- MySQL: 5.7
