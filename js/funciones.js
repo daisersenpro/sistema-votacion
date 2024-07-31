@@ -43,6 +43,8 @@ function cargarComunas() {
 
 function formatearRUT(rut) {
     rut = rut.replace(/\s+/g, ''); // Eliminar espacios
+    rut = rut.replace(/\./g, ''); // Eliminar puntos
+    rut = rut.replace(/-/g, ''); // Eliminar guiones
     if (rut.length >= 8) {
         return rut.slice(0, -1) + '-' + rut.slice(-1);
     }
@@ -107,8 +109,36 @@ function validarFormulario() {
 }
 
 function validarRUT(rut) {
-    // Implementar validación completa del RUT si es necesario
-    return true; // Placeholder
+    // Eliminar puntos y guiones
+    rut = rut.replace(/\./g, '').replace(/-/g, '');
+
+    // Verificar longitud mínima del número RUT
+    if (rut.length < 8 || rut.length > 9) {
+        return false;
+    }
+
+    // Extraer dígito verificador y número
+    const dv = rut.slice(-1).toUpperCase();
+    const numero = rut.slice(0, -1);
+
+    // Validar que el número contenga solo dígitos
+    if (!/^\d+$/.test(numero)) {
+        return false;
+    }
+
+    // Calcular el DV
+    let suma = 0;
+    let multiplicador = 2;
+
+    for (let i = numero.length - 1; i >= 0; i--) {
+        suma += parseInt(numero.charAt(i)) * multiplicador;
+        multiplicador = multiplicador === 7 ? 2 : multiplicador + 1;
+    }
+
+    const dvr = 11 - (suma % 11);
+    const dvEsperado = dvr === 11 ? '0' : dvr === 10 ? 'K' : dvr.toString();
+
+    return dv === dvEsperado;
 }
 
 function validarEmail(email) {

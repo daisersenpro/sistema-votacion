@@ -29,11 +29,11 @@ $candidatos_result = $conn->query($candidatos_sql);
     <title>Formulario de Votación</title>
     <link rel="stylesheet" href="css/estilos.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="js/funciones.js"></script>
+    <script src="js/funciones.js" defer></script>
 </head>
 <body>
     <div class="container">
-        <h2>Formulario de Votación:</h2>
+        <h2>Formulario de Votación</h2>
         <form id="votacionForm" action="procesar_voto.php" method="POST">
             <div class="form-group">
                 <label for="nombre_apellido">Nombre y Apellido:</label>
@@ -85,19 +85,20 @@ $candidatos_result = $conn->query($candidatos_sql);
             </div>
             <div class="form-group">
                 <label>¿Cómo se enteró de Nosotros?</label>
-                <div class="checkbox-group">
-                    <label><input type="checkbox" name="enterado[]" value="web"> Web</label>
-                    <label><input type="checkbox" name="enterado[]" value="tv"> TV</label>
-                    <label><input type="checkbox" name="enterado[]" value="redes"> Redes Sociales</label>
-                    <label><input type="checkbox" name="enterado[]" value="amigo"> Amigo</label>
-                </div>
+                <label><input type="checkbox" name="enterado[]" value="Publicidad"> Publicidad</label>
+                <label><input type="checkbox" name="enterado[]" value="Redes Sociales"> Redes Sociales</label>
+                <label><input type="checkbox" name="enterado[]" value="Recomendación"> Recomendación</label>
+                <label><input type="checkbox" name="enterado[]" value="Otros"> Otros</label>
             </div>
-            <button type="submit" class="btn">Votar</button>
+            <div class="form-group">
+                <button type="submit">Enviar</button>
+            </div>
         </form>
     </div>
 </body>
 </html>
 
 <?php
+// Cerrar conexión
 $conn->close();
 ?>
